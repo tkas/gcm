@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{$Cache.Name} by {$Cache.PlacedBy}</title>
+		<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="qrc:/html/listing.css" />
+		<link rel="stylesheet" type="text/css" href="qrc:/html/typography.css" />
+		<script type="text/javascript" src="qrc:/html/listing.js"></script>
+		
+		<!--<link rel="stylesheet" type="text/css" href="listing.css" />
+		<link rel="stylesheet" type="text/css" href="typography.css" />
+		<script type="text/javascript" src="listing.js"></script>-->
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="gcid">{$Cache.GCID}</div>
+			<h1><img src="qrc:/icons/32x32/{$Cache.Type|cacheTypeToIcon}" /> {$Cache.Name}</h1>
+			<div class="author">A cache by <a href="http://coord.info/PR{$Cache.OwnerID|gcIdToString}">{$Cache.PlacedBy}</a>, hidden {$Cache.DtHidden|formatDate}</div>
+		</div>
+		
+		<div class="cacheInfo">
+			<div class="attributes">
+				<h2>Attributes</h2>
+				{foreach $Cache.Attributes as $Attribute}
+					{if $Attribute.Yes}
+						<img src="qrc:/attributes/attr_{$Attribute.ID}y.png" alt="{$Attribute.Name}" />
+					{else}
+						<img src="qrc:/attributes/attr_{$Attribute.ID}n.png" alt="{$Attribute.Name}" />
+					{endif}
+				{endforeach}
+			</div>
+			
+			<div class="coordinates">{$Cache.Latitude|formatLatitude} {$Cache.Longitude|formatLongitude}</div>
+			<div class="location">In {if $Cache.State}{$Cache.State}, {$Cache.Country}{else}{$Cache.Country}{endif}</div>
+			
+			<div class="difficulty kv">
+				<div class="label">Difficulty:</div>
+				<div class="value"><img src="qrc:/icons/{$Cache.Difficulty|starsToIcon}" alt="{$Cache.Difficulty|starsToNum}" /> ({$Cache.Difficulty|starsToNum})</div>
+			</div>
+			
+			<div class="terrain kv">
+				<div class="label">Terrain:</div>
+				<div class="value"><img src="qrc:/icons/{$Cache.Terrain|starsToIcon}" alt="{$Cache.Terrain|starsToNum}" /> ({$Cache.Terrain|starsToNum})</div>
+			</div>
+			
+			<div class="size kv">
+				<div class="label">Size:</div>
+				<div class="value">{$Cache.Size|sizeToString}</div>
+			</div>
+			
+			<div class="hint">
+				<h2>Hint</h2>
+				{$Cache.Hint|htmlspecialchars|nl2br}
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+		
+		<div class="foldsection expanded">
+			<h1>Listing</h1>
+			<div class="content">
+				<div class="userSuppliedContent short">
+					{$Cache.ShortDescription}
+				</div>
+				<div class="userSuppliedContent long">
+					{$Cache.LongDescription}
+				</div>
+			</div>
+		</div>
+		
+		<div class="foldsection">
+			<h1>Additional waypoints</h1>
+			<div class="content">
+				{if $Cache.Waypoints|length}
+					<table class="waypoints">
+						{foreach $Cache.Waypoints as $Waypoint}
+						<tbody>
+							<tr>
+								<td class="icon"><img src="qrc:/icons/16x16/{$Waypoint.Type|waypointTypeToIcon}" alt="{$Waypoint.Type|waypointTypeToString}" /></td>
+								<td class="prefix">{$Waypoint.Prefix}</td>
+								<td class="name"><span class="name">{$Waypoint.Name}</span> ({$Waypoint.Type|waypointTypeToString})</td>
+								<td class="coordinates">{$Waypoint.Latitude|formatLatitude} {$Waypoint.Longitude|formatLongitude}</td>
+							</tr>
+							<tr>
+								<td colspan="4" class="comment">{$Waypoint.Comment}</td>
+							</tr>
+						</tbody>
+						{endforeach}
+					</table>
+				{else}
+					No additional cache waypoints exists.
+				{endif}
+			</div>
+		</div>
+		
+		<div class="foldsection">
+			<h1>Logs</h1>
+			<div class="content">
+				{if $Cache.Logs|length}
+					<ul class="logs">
+					{foreach $Cache.Logs as $Log}
+						<li class="log">
+							<div class="loghead">
+								<img src="qrc:/icons/logs/{$Log.Type|logTypeToIcon}" />
+								<span class="type">{$Log.Type|logTypeToString}</span> by
+								<a href="http://coord.info/PR{$Log.FinderID|gcIdToString}" class="finder">{$Log.Finder}</a> on
+								<span class="date">{$Log.Date|formatDate}</span>
+							</div>
+							<div class="userSuppliedContent{if $Log.IsEncoded} encoded{endif}" id="log_{$Log.ID}">
+								{$Log.Text|nl2br}
+							</div>
+							{if $Log.IsEncoded}
+							<a href="javascript:decode('log_{$Log.ID}')">Decrypt</a>
+							{endif}
+						</li>
+					{endforeach}
+					</ul>
+				{else}
+					No logs to display.
+				{endif}
+			</div>
+		</div>
+	</body>
+</html>

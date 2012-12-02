@@ -1,0 +1,14 @@
+CXX=g++
+CXXFLAGS+=-rdynamic -fPIC
+EXTENSION=
+PLUGINEXTENSION=.so
+RM_FILE=rm -f
+RM_DIR=rm -rf
+MAKEPATH=mkdir -p
+TARGET_OS=linux
+BIN_LDFLAGS+=-ldl -L$(TARGET) -Wl,--rpath,.
+TESTBIN_LDFLAGS+=-ldl -L$(TARGET) -lgcm -Wl,--rpath,$(TARGET)
+XML_CFLAGS=`xml2-config --cflags`
+XML_LDFLAGS=`xml2-config --libs`
+COREOBJS+=src/core/pluginmanager/pm_posix.o
+QMAKE_BIN=qmake-qt4

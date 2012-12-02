@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgcm", "libgcm\libgcm.vcproj", "{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gcm", "gcm\gcm.vcproj", "{7C01320B-AF99-4C62-8B23-4F96507DDB8C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gcm-cli", "gcm-cli\gcm-cli.vcproj", "{93DFBE5A-1517-465F-A7F8-77F9C566CACB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin-import-pqgpx", "plugin-import-pqgpx\plugin-import-pqgpx.vcproj", "{5F8F882B-9EE3-4FE1-827E-B8141CA9BFDF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin-ui-qt4", "plugin-ui-qt4\plugin-ui-qt4.vcproj", "{112E1CB6-6189-4C4C-A59F-10C309B79A01}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin-ui-cli", "plugin-ui-cli\plugin-ui-cli.vcproj", "{FA2B9874-DCEB-419E-84B4-3549ED90F30B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin-db-gcm", "plugin-db-gcm\plugin-db-gcm.vcproj", "{43C84D8B-586A-48A9-86B1-E8D00449BEC2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin-export-pqgpx", "plugin-export-pqgpx\plugin-export-pqgpx.vcproj", "{F14265AE-6C48-44CA-9D3D-D91E50B531A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin-db-geoget", "plugin-db-geoget\plugin-db-geoget.vcproj", "{CB45A619-C091-4DF8-BDBB-18277442D7F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344} = {91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}.Debug|Win32.ActiveCfg = Debug|Win32
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}.Debug|Win32.Build.0 = Debug|Win32
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}.Release|Win32.ActiveCfg = Release|Win32
+		{91B9EB59-AB10-4AEF-A5C4-9183CDFC3344}.Release|Win32.Build.0 = Release|Win32
+		{7C01320B-AF99-4C62-8B23-4F96507DDB8C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7C01320B-AF99-4C62-8B23-4F96507DDB8C}.Debug|Win32.Build.0 = Debug|Win32
+		{7C01320B-AF99-4C62-8B23-4F96507DDB8C}.Release|Win32.ActiveCfg = Release|Win32
+		{7C01320B-AF99-4C62-8B23-4F96507DDB8C}.Release|Win32.Build.0 = Release|Win32
+		{93DFBE5A-1517-465F-A7F8-77F9C566CACB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{93DFBE5A-1517-465F-A7F8-77F9C566CACB}.Debug|Win32.Build.0 = Debug|Win32
+		{93DFBE5A-1517-465F-A7F8-77F9C566CACB}.Release|Win32.ActiveCfg = Release|Win32
+		{93DFBE5A-1517-465F-A7F8-77F9C566CACB}.Release|Win32.Build.0 = Release|Win32
+		{5F8F882B-9EE3-4FE1-827E-B8141CA9BFDF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5F8F882B-9EE3-4FE1-827E-B8141CA9BFDF}.Debug|Win32.Build.0 = Debug|Win32
+		{5F8F882B-9EE3-4FE1-827E-B8141CA9BFDF}.Release|Win32.ActiveCfg = Release|Win32
+		{5F8F882B-9EE3-4FE1-827E-B8141CA9BFDF}.Release|Win32.Build.0 = Release|Win32
+		{112E1CB6-6189-4C4C-A59F-10C309B79A01}.Debug|Win32.ActiveCfg = Debug|Win32
+		{112E1CB6-6189-4C4C-A59F-10C309B79A01}.Debug|Win32.Build.0 = Debug|Win32
+		{112E1CB6-6189-4C4C-A59F-10C309B79A01}.Release|Win32.ActiveCfg = Release|Win32
+		{112E1CB6-6189-4C4C-A59F-10C309B79A01}.Release|Win32.Build.0 = Release|Win32
+		{FA2B9874-DCEB-419E-84B4-3549ED90F30B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FA2B9874-DCEB-419E-84B4-3549ED90F30B}.Debug|Win32.Build.0 = Debug|Win32
+		{FA2B9874-DCEB-419E-84B4-3549ED90F30B}.Release|Win32.ActiveCfg = Release|Win32
+		{FA2B9874-DCEB-419E-84B4-3549ED90F30B}.Release|Win32.Build.0 = Release|Win32
+		{43C84D8B-586A-48A9-86B1-E8D00449BEC2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{43C84D8B-586A-48A9-86B1-E8D00449BEC2}.Debug|Win32.Build.0 = Debug|Win32
+		{43C84D8B-586A-48A9-86B1-E8D00449BEC2}.Release|Win32.ActiveCfg = Release|Win32
+		{43C84D8B-586A-48A9-86B1-E8D00449BEC2}.Release|Win32.Build.0 = Release|Win32
+		{F14265AE-6C48-44CA-9D3D-D91E50B531A8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F14265AE-6C48-44CA-9D3D-D91E50B531A8}.Debug|Win32.Build.0 = Debug|Win32
+		{F14265AE-6C48-44CA-9D3D-D91E50B531A8}.Release|Win32.ActiveCfg = Release|Win32
+		{F14265AE-6C48-44CA-9D3D-D91E50B531A8}.Release|Win32.Build.0 = Release|Win32
+		{CB45A619-C091-4DF8-BDBB-18277442D7F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CB45A619-C091-4DF8-BDBB-18277442D7F9}.Debug|Win32.Build.0 = Debug|Win32
+		{CB45A619-C091-4DF8-BDBB-18277442D7F9}.Release|Win32.ActiveCfg = Release|Win32
+		{CB45A619-C091-4DF8-BDBB-18277442D7F9}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		QtVersion = $(DefaultQtVersion)
+	EndGlobalSection
+EndGlobal

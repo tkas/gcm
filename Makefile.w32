@@ -1,0 +1,18 @@
+# This file works for MinGW with MSYS environment.
+
+#CXX=mingw32-g++
+
+PATH:=$(PATH);D:/QtSDK/mingw/msys/1.0/bin;D:/QtSDK/mingw/bin;D:/QtSDK/Desktop/Qt/4.7.4/mingw/bin;D:/QtSDK/Desktop/Qt/4.7.4/mingw/bin/
+QMAKE_BIN=D:/QtSDK/Desktop/Qt/4.7.4/mingw/bin/qmake.exe
+
+EXTENSION=.exe
+PLUGINEXTENSION=.dll
+RM_FILE=rm -f
+RM_DIR=rm -rf
+MAKEPATH=mkdir -p
+TARGET_OS=windows
+COREOBJS+=src/core/pluginmanager/pm_win32.o
+LDFLAGS+=-L$(TARGET) -lpthreadVCE2
+XML_CFLAGS=-I/include
+XML_LDFLAGS=-L/bin -lxml2
+GUI_LDFLAGS=-mwindows

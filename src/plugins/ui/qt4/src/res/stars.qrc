@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/stars_10.png</file>
+        <file>icons/stars_15.png</file>
+        <file>icons/stars_20.png</file>
+        <file>icons/stars_25.png</file>
+        <file>icons/stars_30.png</file>
+        <file>icons/stars_35.png</file>
+        <file>icons/stars_40.png</file>
+        <file>icons/stars_45.png</file>
+        <file>icons/stars_50.png</file>
+    </qresource>
+</RCC>

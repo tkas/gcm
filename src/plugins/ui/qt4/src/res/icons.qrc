@@ -1,0 +1,69 @@
+<RCC>
+  <qresource prefix="/">
+    <file>icons/16x16/ic_rem_alldown.png</file>
+    <file>icons/16x16/ic_remove.png</file>
+    <file>icons/16x16/ic_copy.png</file>
+    <file>icons/16x16/ic_cache_cito.png</file>
+    <file>icons/16x16/ic_cache_earth.png</file>
+    <file>icons/16x16/ic_cache_event.png</file>
+    <file>icons/16x16/ic_cache_letterbox.png</file>
+    <file>icons/16x16/ic_cache_megaevent.png</file>
+    <file>icons/16x16/ic_cache_multi.png</file>
+    <file>icons/16x16/ic_cache_mystery.png</file>
+    <file>icons/16x16/ic_cache_traditional.png</file>
+    <file>icons/16x16/ic_cache_virtual.png</file>
+    <file>icons/16x16/ic_cache_webcam.png</file>
+    <file>icons/16x16/ic_cache_wherigo.png</file>
+    <file>icons/16x16/ic_wpt_final.png</file>
+    <file>icons/16x16/ic_wpt_parking.png</file>
+    <file>icons/16x16/ic_wpt_qta.png</file>
+    <file>icons/16x16/ic_wpt_reference.png</file>
+    <file>icons/16x16/ic_wpt_stage.png</file>
+    <file>icons/16x16/ic_wpt_trailhead.png</file>
+    <file>icons/32x32/ic_cache_cito.png</file>
+    <file>icons/32x32/ic_cache_earth.png</file>
+    <file>icons/32x32/ic_cache_event.png</file>
+    <file>icons/32x32/ic_cache_letterbox.png</file>
+    <file>icons/32x32/ic_cache_megaevent.png</file>
+    <file>icons/32x32/ic_cache_multi.png</file>
+    <file>icons/32x32/ic_cache_mystery.png</file>
+    <file>icons/32x32/ic_cache_traditional.png</file>
+    <file>icons/32x32/ic_cache_virtual.png</file>
+    <file>icons/32x32/ic_cache_webcam.png</file>
+    <file>icons/32x32/ic_cache_wherigo.png</file>
+    <file>icons/32x32/ic_wpt_final.png</file>
+    <file>icons/32x32/ic_wpt_parking.png</file>
+    <file>icons/32x32/ic_wpt_qta.png</file>
+    <file>icons/32x32/ic_wpt_reference.png</file>
+    <file>icons/32x32/ic_wpt_stage.png</file>
+    <file>icons/32x32/ic_wpt_trailhead.png</file>
+    <file alias="ic_af_add.png">icons/ic_af_add.png</file>
+    <file alias="ic_af_intersect.png">icons/ic_af_intersect.png</file>
+    <file alias="ic_af_load.png">icons/ic_af_load.png</file>
+    <file alias="ic_af_sub.png">icons/ic_af_sub.png</file>
+    <file>icons/16x16/ic_database.png</file>
+    <file>icons/16x16/ic_about.png</file>
+    <file>icons/16x16/ic_database_copy.png</file>
+    <file>icons/16x16/ic_database_new.png</file>
+    <file>icons/16x16/ic_database_remove.png</file>
+    <file>icons/16x16/ic_database_select.png</file>
+    <file>icons/16x16/ic_exit.png</file>
+    <file>icons/16x16/ic_open.png</file>
+    <file>icons/16x16/ic_save.png</file>
+    <file>icons/16x16/ic_filter.png</file>
+    <file>icons/16x16/ic_waypoint_add.png</file>
+    <file>icons/16x16/ic_waypoint_modify.png</file>
+    <file>icons/16x16/ic_waypoint_remove.png</file>
+    <file>icons/16x16/ic_details.png</file>
+    <file>icons/16x16/ic_show_online.png</file>
+    <file>icons/16x16/ic_database_rename.png</file>
+    <file>icons/16x16/ic_log_dnf.png</file>
+    <file>icons/16x16/ic_log_found.png</file>
+    <file>icons/16x16/ic_settings.png</file>
+    <file>icons/16x16/ic_refresh.png</file>
+    <file>icons/16x16/ic_clear.png</file>
+    <file>icons/16x16/ic_search.png</file>
+    <file>icons/16x16/ic_remove.png</file>
+    <file>icons/16x16/ic_rem_alldown.png</file>
+  </qresource>
+</RCC>

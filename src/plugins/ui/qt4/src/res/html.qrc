@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>html/listing.css</file>
+        <file>html/listing.html</file>
+        <file>html/collapsed.png</file>
+        <file>html/expanded.png</file>
+        <file>html/typography.css</file>
+        <file>html/listing.js</file>
+    </qresource>
+</RCC>

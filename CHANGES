@@ -1,0 +1,42 @@
+version 0.0.4 (r84)
+-------------------
+
+db:
+  - GeoGet database now correctly decodes listing and logs. (r70)
+  - GCM database: Optimization when importing large amount of data. (r72)
+  - GCM database: Fixed bug when importing new waypoints and caches to
+    database. (r74)
+  - Fixed bug when import overwrote found status and user comment. (r76)
+
+qt4:
+  - Qt4 GUI: Fixed bug in waypoint dialog with overwriting name and prefix
+    even if modifying waypoint. (r80)
+  - put search pattern to lower case before compare to be case insensitive
+    (r83)
+
+
+version 0.0.3 (r69)
+-------------------
+
+build:
+  - enable build in plugins/* directory, build only missing files (r65,r66)
+
+core:
+  - enable setting of debug and error output destination (none,display,file)  (r54)
+  - add -d/--debug option to specify debug output (r54)
+  - add GCM_VERSION version string in config.h and GCM_REVISION in Makefile.vars (r56)
+  - Added gcm_version correctly to libgcm (r69)
+
+cli:
+  - set default error output to display and debug output to none (r54)
+  - add 'version' command to print version information (r57)
+  - add 'fmt-list' command to list available expot formats (r57)
+  - add 'export' command to export caches to FORMAT from DB using FILTER (r59,r61)
+  - add DB selection to 'import' command (r63)
+
+qt4:
+  - Added correct version information to About dialog. (r68)
+  
+
+version 0.0.2 (r53)
+-------------------

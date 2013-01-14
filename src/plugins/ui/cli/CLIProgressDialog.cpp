@@ -68,7 +68,7 @@ void CLIProgressDialog::dismiss() {
 #endif
 
 		// Report done.
-		printf("\r%s ... Done\n", this->getMessage()->c_str());
+		printf("\r   %s ... Done\n", this->getMessage()->c_str());
 		fflush(stdout);
 	} else {
 		printf(" ...done.\n");
@@ -96,7 +96,7 @@ void CLIProgressDialog::update() {
 		float percent = this->getPercent();
 		// Print the message and percentage indicator.
 #ifndef _WIN32
-		printf("\033[1A\033[2K\r%s\n\033[2K\r %3.0f%% [",
+		printf("\033[1A\033[2K\r   %s\n\033[2K\r %3.0f%% [",
 			this->getMessage()->c_str(),
 			percent);
 #else
@@ -120,7 +120,7 @@ void CLIProgressDialog::update() {
 		int rotor = 0;
 		char rot[9] = "-\\|/-\\|/";
 #ifndef _WIN32
-		printf("\033[2K\r %c %s",
+		printf("\033[2K\r %c %s\n",
 			rot[rotor],
 			this->getMessage()->c_str());
 #else

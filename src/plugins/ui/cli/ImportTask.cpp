@@ -15,7 +15,6 @@ ImportTask::ImportTask(const char *filename, const char*dbName, ptrUI ui):
 	BackgroundTask(), mFilename(filename), mDBname(dbName), mProgressDialog(NULL), mUI(ui) {};
 
 void ImportTask::onPreExecute() {
-  printf("\n");
 	mProgressDialog = mUI->getDialogBuilder()->buildProgressDialog();
 	mProgressDialog->setMessage(String::format("Importing %s...", mFilename));
 	mProgressDialog->show();

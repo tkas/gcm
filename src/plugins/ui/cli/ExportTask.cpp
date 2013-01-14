@@ -39,7 +39,6 @@ void ExportTask::doInBackground() {
                         mFilename->toString()->c_str(), mFmtname, mDBname, mFiltername);
 
       if(strcmp(mFmtname, (*ii)->exportId->c_str()) == 0){
-        printf("\n");
         mProgressDialog->setMessage("Building list for export...");
 	      mProgressDialog->show();
 

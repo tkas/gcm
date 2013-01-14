@@ -111,7 +111,7 @@ void CLIProgressDialog::update() {
 		char progress[51] =
 			"==================================================";
 
-		printf("%s", progress + 51 - (int)(percent / 2));
+		printf("%s", progress + 50 - (int)(percent / 2));
 		printf(">");
 		printf("%s] ", spaces + (int)(percent / 2));
 

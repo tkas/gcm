@@ -13,7 +13,7 @@
 #include <sstream>
 #include <zlib.h>
 
-//#include "MurmurHash2.h"
+#include "MurmurHash2.h"
 
 using namespace GCM::database;
 using namespace GCM::geolib;
@@ -409,28 +409,35 @@ void GGDatabase::updateLogs(GCM::GC<GCM::geolib::LogList> list) {
 	}
 }
 
-const int GGDatabase::HASH_SEED = 42;
+// Magic HASH_SEED to "fine tune" the hash for GeoGet DB. This must be the same
+// as GG has.
+const int GGDatabase::HASH_SEED = 3314489979;
 
 uint32_t GGDatabase::computeHashLong(GCM::GC<GCM::geolib::Geocache> cache) {
-	/*String toHash = "";
+	String toHash = "";
 	toHash->reserve(
 		cache->getShortDescription()->length() +
 		cache->getLongDescription()->length() +
 		cache->getHint()->length()
 	);
-	toHash->append(*(cache->getShortDescription().getObj()));
-	toHash->append(*(cache->getLongDescription().getObj()));
-	toHash->append(*(cache->getHint().getObj()));*/
+	toHash->append(*(cache->getShortDescription().get().getObj()));
+	toHash->append(*(cache->getLongDescription().get().getObj()));
+	toHash->append(*(cache->getHint().get().getObj()));
 
-	//return MurmurHash2A(toHash->c_str(), toHash->length(), HASH_SEED);
-	return 0;
-	(void)cache;
+	return MurmurHash2(toHash->c_str(), toHash->length(), HASH_SEED);
 }
 
 uint32_t GGDatabase::computeHashLog(GCM::GC<GCM::geolib::Log> log) {
-	//return MurmurHash2A(log->getText()->c_str(), log->getText()->length(), HASH_SEED);
-	return 0;
-	(void)log;
+	std::stringstream query;
+	query.str("");
+	query
+		<< *(GGDatabase::timeToGGDate(log->getTime()).getObj()) // date
+		<< *(GCM::geolib::Log::typeToGpxString(log.getType()).getObj()) // type
+		<< log->getText(); // log text
+
+	std::string s = query.str();
+
+	return MurmurHash2(s.c_str(), s.length(), HASH_SEED);
 }
 
 GCM::database::Database::Result GGDatabase::createCache(GCM::GC<GCM::geolib::Geocache> cache) {
@@ -528,8 +535,6 @@ GCM::database::Database::Result GGDatabase::createCache(GCM::GC<GCM::geolib::Geo
 }
 
 GCM::database::Database::Result GGDatabase::updateCache(GCM::GC<GCM::geolib::Geocache> cache) {
-	// TODO: Unimplemented
-
 	GC<Stmt> stmt = this->db->prepare("UPDATE \"geocache\" SET "
 		"\"x\" = ?," // 1
 		"\"y\" = ?," // 2

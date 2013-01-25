@@ -324,7 +324,7 @@ void GGDatabase::updateLogs(GCM::GC<GCM::geolib::LogList> list) {
 	LogList::iterator i = list->begin();
 
 	GC<Stmt> stmtCreateLog = this->db->prepare("INSERT INTO \"geolog\" (\"id\", \"dt\", \"type\", "
-		"\"finder\", \"logtext\", \"gs_logid\", \"gs_finderid\", \"hash\", \"dtupdate2\" "
+		"\"finder\", \"logtext\", \"gs_logid\", \"gs_finderid\", \"hash\", \"dtupdate2\") "
 		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	GC<Stmt> stmtUpdateLog = this->db->prepare("UPDATE \"geolog\" SET \"dt\" = ?, \"type\" = ?, "
 		"\"finder\" = ?, \"dtupdate2\" = ?, \"logtext\" = ?, \"hash\" = ? WHERE \"gs_logid\" = ?");
@@ -432,7 +432,7 @@ uint32_t GGDatabase::computeHashLog(GCM::GC<GCM::geolib::Log> log) {
 	query.str("");
 	query
 		<< *(GGDatabase::timeToGGDate(log->getTime()).getObj()) // date
-		<< *(GCM::geolib::Log::typeToGpxString(log.getType()).getObj()) // type
+		<< *(GCM::geolib::Log::typeToGpxString(log->getType()).getObj()) // type
 		<< log->getText(); // log text
 
 	std::string s = query.str();
@@ -448,7 +448,8 @@ GCM::database::Database::Result GGDatabase::createCache(GCM::GC<GCM::geolib::Geo
 		"\"dtupdate2\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		"?, ?, ?, ?, ?, ?, ?)");
 
-	this->db->beginTransaction();
+	//this->db->beginTransaction();
+	this->db->exec("SAVEPOINT \"create_cache\"");
 
 	stmt->bind(1, cache->getId());
 	stmt->bind(2, cache->getLatitude());
@@ -482,7 +483,7 @@ GCM::database::Database::Result GGDatabase::createCache(GCM::GC<GCM::geolib::Geo
 	stmt->bind(23, GGDatabase::timeToGGDate2(cache->getDtLastUpdate()));
 
 	if (stmt->step() != SQLITE_DONE) {
-		this->db->rollback();
+		this->db->exec("ROLLBACK TO \"create_cache\"");
 		return GCM::database::Database::ST_FAILED;
 	} else {
 		cache->setRowId(this->db->lastInsertId());
@@ -513,7 +514,7 @@ GCM::database::Database::Result GGDatabase::createCache(GCM::GC<GCM::geolib::Geo
 		stmt->bind(8, GGDatabase::timeToGGDate2(cache->getDtLastUpdate()));
 
 		if (stmt->step() != SQLITE_DONE) {
-			this->db->rollback();
+			this->db->exec("ROLLBACK TO \"create_cache\"");
 			return GCM::database::Database::ST_FAILED;
 		}
 
@@ -531,10 +532,14 @@ GCM::database::Database::Result GGDatabase::createCache(GCM::GC<GCM::geolib::Geo
 	// Store tags
 	// TODO: Tags unimplemented
 
+	this->db->exec("RELEASE \"create_cache\"");
+
 	return GCM::database::Database::ST_CREATED;
 }
 
 GCM::database::Database::Result GGDatabase::updateCache(GCM::GC<GCM::geolib::Geocache> cache) {
+	this->db->exec("SAVEPOINT \"update_cache\"");
+
 	GC<Stmt> stmt = this->db->prepare("UPDATE \"geocache\" SET "
 		"\"x\" = ?," // 1
 		"\"y\" = ?," // 2
@@ -588,7 +593,10 @@ GCM::database::Database::Result GGDatabase::updateCache(GCM::GC<GCM::geolib::Geo
 
 	stmt->bind(21, cache->getRowId());
 
-	if (stmt->step() != SQLITE_DONE) return GCM::database::Database::ST_FAILED;
+	if (stmt->step() != SQLITE_DONE) {
+		this->db->exec("ROLLBACK TO \"update_cache\"");
+		return GCM::database::Database::ST_FAILED;
+	}
 
 	// Store waypoints
 	if (cache->isWaypointsLoaded()) {
@@ -665,6 +673,8 @@ GCM::database::Database::Result GGDatabase::updateCache(GCM::GC<GCM::geolib::Geo
 	// TODO: Update attributes
 	// TODO: Update tags
 
+	this->db->exec("RELEASE \"update_cache\"");
+
 	return GCM::database::Database::ST_UPDATED;
 }
 
@@ -683,7 +693,8 @@ GCM::database::Database::Result GGDatabase::saveCache(GCM::GC<GCM::geolib::Geoca
 GCM::database::Database::Result GGDatabase::saveCacheWaypoint(GCM::GC<GCM::geolib::GeocacheWaypoint> waypoint) {
 	GC<Stmt> stmt;
 
-	this->db->beginTransaction();
+	//this->db->beginTransaction();
+	this->db->exec("SAVEPOINT \"save_waypoint\"");
 
 	if (waypoint->getRowId() > 0) {
 		// Waypoint exists, update.
@@ -715,7 +726,7 @@ GCM::database::Database::Result GGDatabase::saveCacheWaypoint(GCM::GC<GCM::geoli
 		stmt->bind(12, waypoint->getRowId());
 
 		if (stmt->step() != SQLITE_DONE) {
-			this->db->rollback();
+			this->db->exec("ROLLBACK TO \"save_waypoint\"");
 			return GCM::database::Database::ST_FAILED;
 		}
 
@@ -733,11 +744,11 @@ GCM::database::Database::Result GGDatabase::saveCacheWaypoint(GCM::GC<GCM::geoli
 		stmt->bind(5, waypoint->getRowId());
 
 		if (stmt->step() != SQLITE_DONE) {
-			this->db->rollback();
+			this->db->exec("ROLLBACK TO \"save_waypoint\"");
 			return GCM::database::Database::ST_FAILED;
 		}
 
-		this->db->commit();
+		this->db->exec("RELEASE \"save_waypoint\"");
 		return GCM::database::Database::ST_CREATED;
 	} else {
 		// Waypoint does not exists, create.
@@ -748,7 +759,7 @@ GCM::database::Database::Result GGDatabase::saveCacheWaypoint(GCM::GC<GCM::geoli
 		stmt->bind(1, waypoint->getCache()->getId());
 		stmt->bind(2, waypoint->getLatitude());
 		stmt->bind(3, waypoint->getLongitude());
-		stmt->bind(4, waypoint->getName());this->db->commit();
+		stmt->bind(4, waypoint->getName());
 		stmt->bind(5, waypoint->getId()->substring(0, 2));
 		stmt->bind(6, GeocacheWaypoint::typeToGpxString(waypoint->getWptType()));
 		stmt->bind(7, waypoint->getComment());
@@ -759,7 +770,7 @@ GCM::database::Database::Result GGDatabase::saveCacheWaypoint(GCM::GC<GCM::geoli
 		stmt->bind(12, waypoint->getRowId());
 
 		if (stmt->step() != SQLITE_DONE) {
-			this->db->rollback();
+			this->db->exec("ROLLBACK TO \"save_waypoint\"");
 			return GCM::database::Database::ST_FAILED;
 		}
 
@@ -776,11 +787,11 @@ GCM::database::Database::Result GGDatabase::saveCacheWaypoint(GCM::GC<GCM::geoli
 		stmt->bind(5, waypoint->getLongitude());
 
 		if (stmt->step() != SQLITE_DONE) {
-			this->db->rollback();
+			this->db->exec("ROLLBACK TO \"save_waypoint\"");
 			return GCM::database::Database::ST_FAILED;
 		}
 
-		this->db->commit();
+		this->db->exec("RELEASE \"save_waypoint\"");
 		return GCM::database::Database::ST_CREATED;
 	}
 }
@@ -792,7 +803,9 @@ GCM::database::Database::Result GGDatabase::saveGenericWaypoint(GCM::GC<GCM::geo
 }
 
 void GGDatabase::removeCache(GCM::GC<GCM::geolib::Geocache> cache) {
-	this->db->beginTransaction();
+	//this->db->beginTransaction();
+
+	this->db->exec("SAVEPOINT \"remove_cache\"");
 
 	// Remove all waypoints with coord index
 	GC<GeocacheWaypointList> wpts = cache->getWaypoints();
@@ -807,7 +820,7 @@ void GGDatabase::removeCache(GCM::GC<GCM::geolib::Geocache> cache) {
 	stmt->bind(1, cache->getRowId());
 
 	if (stmt->step() != SQLITE_DONE) {
-		this->db->rollback();
+		this->db->exec("ROLLBACK TO \"remove_cache\"");
 		return;
 	}
 
@@ -816,7 +829,7 @@ void GGDatabase::removeCache(GCM::GC<GCM::geolib::Geocache> cache) {
 	stmt->bind(1, cache->getRowId());
 
 	if (stmt->step() != SQLITE_DONE) {
-		this->db->rollback();
+		this->db->exec("ROLLBACK TO \"remove_cache\"");
 		return;
 	}
 
@@ -825,7 +838,7 @@ void GGDatabase::removeCache(GCM::GC<GCM::geolib::Geocache> cache) {
 	stmt->bind(1, cache->getId());
 
 	if (stmt->step() != SQLITE_DONE) {
-		this->db->rollback();
+		this->db->exec("ROLLBACK TO \"remove_cache\"");
 		return;
 	}
 
@@ -834,7 +847,7 @@ void GGDatabase::removeCache(GCM::GC<GCM::geolib::Geocache> cache) {
 	stmt->bind(1, cache->getId());
 
 	if (stmt->step() != SQLITE_DONE) {
-		this->db->rollback();
+		this->db->exec("ROLLBACK TO \"remove_cache\"");
 		return;
 	}
 
@@ -843,11 +856,11 @@ void GGDatabase::removeCache(GCM::GC<GCM::geolib::Geocache> cache) {
 	stmt->bind(1, cache->getId());
 
 	if (stmt->step() != SQLITE_DONE) {
-		this->db->rollback();
+		this->db->exec("ROLLBACK TO \"remove_cache\"");
 		return;
 	}
 
-	this->db->commit();
+	this->db->exec("RELEASE \"remove_cache\"");
 }
 
 void GGDatabase::removeCacheWaypoint(GCM::GC<GCM::geolib::GeocacheWaypoint> waypoint) {

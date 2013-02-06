@@ -411,7 +411,7 @@ void GGDatabase::updateLogs(GCM::GC<GCM::geolib::LogList> list) {
 
 // Magic HASH_SEED to "fine tune" the hash for GeoGet DB. This must be the same
 // as GG has.
-const int GGDatabase::HASH_SEED = 3314489979;
+const unsigned int GGDatabase::HASH_SEED = 3314489979U;
 
 uint32_t GGDatabase::computeHashLong(GCM::GC<GCM::geolib::Geocache> cache) {
 	String toHash = "";

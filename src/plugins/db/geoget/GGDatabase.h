@@ -70,7 +70,7 @@ class GGDatabase: public GCM::database::Database {
 
 		void updateLogs(GCM::GC<GCM::geolib::LogList> list);
 
-		static const int HASH_SEED;
+		static const unsigned int HASH_SEED;
 		uint32_t computeHashLong(GCM::GC<GCM::geolib::Geocache> cache);
 		uint32_t computeHashLog(GCM::GC<GCM::geolib::Log> log);
 

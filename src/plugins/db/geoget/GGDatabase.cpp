@@ -1224,7 +1224,7 @@ GCM::GC<GCM::geolib::Geocache> GGDatabase::getByGCID(GCM::String gcId) {
 		"state, " // 17
 		"gs_ownerid, " // 18
 		"dtupdate2 " // 19
-		"FROM geocache WHERE ic = ?");
+		"FROM geocache WHERE id = ?");
 
 	stmtCache->bind(1, gcId);
 	if (stmtCache->step() == SQLITE_ROW) {

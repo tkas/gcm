@@ -260,10 +260,43 @@ public:
 			}
 		}
 	};
+	
+  class Delete: public Command {
+	private:
+		MainWindow *wnd;
+
+	public:
+		Delete(MainWindow *wnd): Command("Delete", "delete"), wnd(wnd) {};
+
+		void triggered() {
+      ptrDialog dialog = ::ui->getDialogBuilder()->buildProgressDialog();
+
+      dialog->setMaxProgress(this->getSelectedCaches()->size());
+      dialog->setProgress(0);
+      dialog->show();
+
+      GCM::GC<GCM::database::Database> db;
+      GCM::geolib::GeocacheList::iterator i = this->getSelectedCaches()->begin();
+
+      while (i != this->getSelectedCaches()->end()) {
+        GCM::GC<GCM::geolib::Geocache> cache = *i;
+
+        if (cache->getDbProvider()) {
+          db = cache->getDbProvider();
+          db->removeCache(cache);
+        }
+
+        dialog->setProgress(dialog->getProgress() + 1);
+        i++;
+      }
+      dialog->dismiss();
+		}
+	};
 
 	DatabaseSubmenu(MainWindow *wnd): CommandMenu("Database", "database"), wnd(wnd) {
 		this->addCommand(new Copy(wnd));
 		this->addCommand(new Move(wnd));
+		this->addCommand(new Delete(wnd));
 	}
 };
 

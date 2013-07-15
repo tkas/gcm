@@ -3,6 +3,8 @@ To create new version
 
 1. set new version in include/config.h GCM_VERSION
 2. add entries to CHANGES file
-3. svn ci -m 'update CHANGES and GCM_VERSION for version 0.0.4'
-4. svn copy http://svn.gcm.cz/gcmanager/trunk http://svn.gcm.cz/gcmanager/tags/0.0.4 -m 'version 0.0.4'
+3. export GCM_VERSION=`grep GCM_VERSION include/config.h | sed 's/.*GCM_VERSION "\([0-9.]*\) .*/\1/'`
+4. echo $GCM_VERSION
+5. svn ci -m "update CHANGES and GCM_VERSION for version $GCM_VERSION"
+6. svn copy http://svn.gcm.cz/gcmanager/trunk http://svn.gcm.cz/gcmanager/tags/$GCM_VERSION -m "version $GCM_VERSION"
 

@@ -318,6 +318,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	this->model = new CachesViewModel(new GCM::geolib::GeocacheList());
 
 	QItemSelectionModel *m = ui->cachesView->selectionModel();
+	ui->cachesView->setSelectionMode( QAbstractItemView::ExtendedSelection );
 	ui->cachesView->setModel(this->model.getObj());
 	delete m;
 	connect(ui->cachesView->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(onRowChanged(const QModelIndex &, const QModelIndex &)));

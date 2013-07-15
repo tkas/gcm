@@ -1,3 +1,22 @@
+version 0.0.5 (r97)
+-------------------
+
+db:
+  - GG database initial implementation for alfa testing (r89)
+  - Fixed GG database plugin transaction handling (r90)
+  - correct type for constant and variable HASH_SEED (r91)
+  - GG database WIP (r92)
+
+ui:
+ - add Delete command to Database submenu in Cache popup menu with delete
+   functionality for single cache (r93)
+ - enable multiselections for cache list (r94)
+
+cli:
+  - correct wrong CLI progress dialog (r87)
+  - clean up CLI progress bar rendering & look enhancement (r88)
+
+
 version 0.0.4 (r86)
 -------------------
 

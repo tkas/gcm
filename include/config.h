@@ -11,4 +11,4 @@
 /**
  * Application version string
  */
-#define GCM_VERSION "0.0.4 (r" GCM_REVISION ")"
+#define GCM_VERSION "0.0.5 (r" GCM_REVISION ")"

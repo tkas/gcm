@@ -17,6 +17,9 @@
 #include <stdio.h>
 #include <gcm.h>
 
+#include <vector>
+#include <algorithm>
+
 #ifndef _WIN32
 # include <dirent.h>
 #endif
@@ -317,8 +320,16 @@ String GCM_API buildString(File dir, String file) {
 	(void)dir;
 }
 
+bool compareFile(File i, File j){
+  return i->toString() < j->toString();
+}
+
+bool compareString(String i, String j){
+  return i < j;
+}
+
 template <class TList, class TInstance, class TFilter>
-TList _intListFiles(File fPtr, GC<TFilter> filter, TInstance (*builder)(File,String)) {
+TList _intListFiles(File fPtr, GC<TFilter> filter, TInstance (*builder)(File,String), bool (cmp)(TInstance,TInstance)) {
 	if (fPtr->isDirectory()) {
 		TList out;
 
@@ -371,6 +382,9 @@ TList _intListFiles(File fPtr, GC<TFilter> filter, TInstance (*builder)(File,Str
 		FindClose(dp);
 #endif
 
+    //Si - sort the list before return!
+    std::sort(out->begin(), out->end(), cmp);
+
 		return out;
 	} else {
 		return TList();
@@ -383,7 +397,7 @@ StringList GCM_API sFile::list() {
 }
 
 StringList GCM_API sFile::list(GC<FilenameFilter> filter) {
-	return _intListFiles<StringList, String, FilenameFilter>(File(this), filter, buildString);
+	return _intListFiles<StringList, String, FilenameFilter>(File(this), filter, buildString, compareString);
 }
 
 
@@ -392,7 +406,7 @@ FileList GCM_API sFile::listFiles() {
 }
 
 FileList GCM_API sFile::listFiles(GC<FileFilter> filter) {
-	return _intListFiles<FileList, File, FileFilter>(File(this), filter, buildFile);
+	return _intListFiles<FileList, File, FileFilter>(File(this), filter, buildFile, compareFile);
 }
 
 String GCM_API sFile::read() {

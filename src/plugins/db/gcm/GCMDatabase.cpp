@@ -950,6 +950,15 @@ GCM::database::Database::Result GCMDatabase::saveCache(GC<Geocache> cache) {
 		if (cache->isAttributesLoaded()) {
 			this->updateAttributes(cache);
 		}
+		
+    if (cache->isWaypointsLoaded()) {
+	    GC<GeocacheWaypointList> list = cache->getWaypoints();
+      GeocacheWaypointList::iterator i = list->begin();
+    	while (i != list->end()) {
+		    this->saveCacheWaypoint(*i);
+	  	  i++;
+	    }
+		}
 
 		// TODO: this->updateTags(cache);
 

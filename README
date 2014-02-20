@@ -1,4 +1,24 @@
-To create new version
+Geocache Manager
+----------------
+based on MSc thesis work by Niximor.
+
+The work contains presentation of the Geocaching game, mainly from the view
+of an information system. It contains study of existing applications with
+their advantages and disadvantages. There is a specification of new
+application, that should solve major disadvantages of existing products in
+second part of the work. Design of such application, that meets the
+requirements, follows. The application is implemented, which is described
+in following chapters, with the aim to target specific problems that were
+solved during the implementation. There is summary and future plans
+cotained in the closing chapter.
+
+git commands
+---------------------
+git push -u origin master
+git pull
+
+to create new version
+(old SVN instructions)
 ---------------------
 
 1. set new version in include/config.h GCM_VERSION

@@ -15,7 +15,6 @@ cotained in the closing chapter.
 git commands
 ---------------------
 git push -u origin master
-git pull
 
 git log  --name-status
 git log --format='- %s (%h)'
@@ -30,4 +29,5 @@ to create new version (git instructions)
 4. echo $GCM_VERSION
 5. git commit -a -m "update CHANGES and GCM_VERSION for version $GCM_VERSION"
 6. git tag -a v$GCM_VERSION -m "version $GCM_VERSION"
+7. git push --tags
 

@@ -31,3 +31,10 @@ to create new version (git instructions)
 6. git tag -a v$GCM_VERSION -m "version $GCM_VERSION"
 7. git push --tags
 
+DB usefull commands
+-------------------
+
+sqlite3 all.db3 .dump >/mnt/data/tmp/all.sql
+grep -v 'CREATE.*TABLE' all.sql | sed "s/INTO \"/INTO /g; s/\" VALUES/ VALUES/g; s/\\\\/\\\\\\\/g" >all.sql2
+mysql -u root -p gcm-all <all.sql2
+

@@ -1,3 +1,19 @@
+version 0.0.6 
+---------------
+
+build:
+ - switch to git, modify version info string (fe17926)
+
+docs:
+ - add Nix's DP as information source (b3133bb)
+
+core:
+ - sort entries in Filter list for GUI select combo box (591236a)
+
+db:
+ - copy wpts on SaveCache() - for DB copy/move (da28d55)
+
+
 version 0.0.5 (r97)
 -------------------
 

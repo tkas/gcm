@@ -17,14 +17,17 @@ git commands
 git push -u origin master
 git pull
 
-to create new version
-(old SVN instructions)
----------------------
+git log  --name-status
+git log --format='- %s (%h)'
+
+
+to create new version (git instructions)
+----------------------------------------
 
 1. set new version in include/config.h GCM_VERSION
 2. add entries to CHANGES file
 3. export GCM_VERSION=`grep GCM_VERSION include/config.h | sed 's/.*GCM_VERSION "\([0-9.]*\) .*/\1/'`
 4. echo $GCM_VERSION
-5. svn ci -m "update CHANGES and GCM_VERSION for version $GCM_VERSION"
-6. svn copy http://svn.gcm.cz/gcmanager/trunk http://svn.gcm.cz/gcmanager/tags/$GCM_VERSION -m "version $GCM_VERSION"
+5. git commit -a -m "update CHANGES and GCM_VERSION for version $GCM_VERSION"
+6. git tag -a v$GCM_VERSION -m "version $GCM_VERSION"
 

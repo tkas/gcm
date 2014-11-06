@@ -85,7 +85,10 @@ PLUGIN_FILES = $(addsuffix $(PLUGINEXTENSION), $(addprefix $(TARGET)/plugins/, $
 
 LIBGCM = $(TARGET)/libgcm$(PLUGINEXTENSION)
 
-all: $(LIBGCM) $(APPS) $(PLUGIN_FILES)
+%/.:
+	mkdir -p $@
+
+all: $(TARGET)/. $(LIBGCM) $(APPS) $(PLUGIN_FILES)
 
 # LibGCM
 $(LIBGCM): CXXFLAGS+=-DLIBGCM

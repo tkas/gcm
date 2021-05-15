@@ -285,6 +285,7 @@ void MyImportInfo::handleWptType(ParserState *state, String val) {
 		val->equals("Waypoint|Parking Area") ||
 		val->equals("Waypoint|Question to Answer") ||
 		val->equals("Waypoint|Stages of a Multicache") ||
+		val->equals("Waypoint|Virtual Stage") ||
 		val->equals("Waypoint|Reference point") ||
 		val->equals("Waypoint|Trailhead")
 	) {

@@ -134,16 +134,22 @@ time_t decodeXmlTime(String ps_time) {
 	switch (readed) {
 		case 6:
 			out.tm_sec = (int)second;
+      break;
 		case 5:
 			out.tm_min = minute;
+      break;
 		case 4:
 			out.tm_hour = hour;
+      break;
 		case 3:
 			out.tm_mday = day;
+      break;
 		case 2:
 			out.tm_mon = month - 1;
+      break;
 		case 1:
 			out.tm_year = year - 1900;
+      break;
 	}
 	out.tm_isdst = 0;
 
@@ -603,6 +609,7 @@ void MyImportInfo::startElementHandler(const xmlChar *name, const xmlChar **attr
 				handleWptCacheNode(state, attrs);
 				nextState = ParserState::ST_GPX_WPT_CACHE;
 			}
+      break;
 
 		case ParserState::ST_GPX_WPT_CACHE:
 			if (eq(name, "groundspeak:name")) {
@@ -839,6 +846,7 @@ void MyImportInfo::endElementHandler(const xmlChar *name) {
 		case ParserState::ST_GPX_WPT_CACHE_TERRAIN:
 			state->activeCache->setTerrain(atof(state->currData->c_str()) * 10);
 			state->state = ParserState::ST_GPX_WPT_CACHE;
+      break;
 
 		case ParserState::ST_GPX_WPT_CACHE_COUNTRY:
 			state->activeCache->setCountry(state->currData);

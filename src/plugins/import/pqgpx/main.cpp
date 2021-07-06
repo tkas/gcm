@@ -118,7 +118,7 @@ time_t decodeXmlTime(String ps_time) {
 	float second;
 	int readed = sscanf(
 		p_time,
-		"%d-%d-%dT%d:%d:%fZ",
+		"%d-%d-%dT%d:%d:%f",
 		&year,
 		&month,
 		&day,
@@ -134,22 +134,22 @@ time_t decodeXmlTime(String ps_time) {
 	switch (readed) {
 		case 6:
 			out.tm_sec = (int)second;
-      break;
+      [[fallthrough]]; //avoid warning here - no break intentional
 		case 5:
 			out.tm_min = minute;
-      break;
+      [[fallthrough]]; //avoid warning here - no break intentional
 		case 4:
 			out.tm_hour = hour;
-      break;
+      [[fallthrough]]; //avoid warning here - no break intentional
 		case 3:
 			out.tm_mday = day;
-      break;
+      [[fallthrough]]; //avoid warning here - no break intentional
 		case 2:
 			out.tm_mon = month - 1;
-      break;
+      [[fallthrough]]; //avoid warning here - no break intentional
 		case 1:
 			out.tm_year = year - 1900;
-      break;
+      [[fallthrough]]; //avoid warning here - no break intentional
 	}
 	out.tm_isdst = 0;
 

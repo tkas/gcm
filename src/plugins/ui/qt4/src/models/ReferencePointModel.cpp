@@ -24,7 +24,7 @@ QVariant ReferencePointModel::data(const QModelIndex &index, int role) const {
 }
 
 QModelIndex ReferencePointModel::index(int row, int column, const QModelIndex &parent) const {
-	return createIndex(row, column, 0);
+	return createIndex(row, column, (quintptr)0);
 	(void)parent;
 }
 

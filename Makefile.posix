@@ -11,4 +11,4 @@ TESTBIN_LDFLAGS+=-ldl -L$(TARGET) -lgcm -Wl,--rpath,$(TARGET)
 XML_CFLAGS=`xml2-config --cflags`
 XML_LDFLAGS=`xml2-config --libs`
 COREOBJS+=src/core/pluginmanager/pm_posix.o
-QMAKE_BIN=qmake-qt4
+QMAKE_BIN=qmake

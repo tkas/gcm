@@ -8,7 +8,8 @@
 #include <QFile>
 #include <database/Database.h>
 #include <QDesktopServices>
-#include <QWebFrame>
+//#include <QWebFrame>
+#include <QtWebKitWidgets/qwebframe.h>
 #include "QtGeolib.h"
 #include <QShortcut>
 #include <QKeySequence>

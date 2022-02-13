@@ -1,7 +1,8 @@
 #ifndef QSELECTALLLINEEDIT_H
 #define QSELECTALLLINEEDIT_H
 
-#include <QtGui/QLineEdit>
+//#include <QtGui/QLineEdit>
+#include <QtWidgets>
 
 class QSelectAllLineEdit : public QLineEdit
 {

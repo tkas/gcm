@@ -1,4 +1,5 @@
 #include <pluginmanager/Plugin.h>
+#include <QApplication>
 #include "main.h"
 
 using namespace GCM::pluginmanager;

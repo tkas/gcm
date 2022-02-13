@@ -1,7 +1,7 @@
 #include "AdvancedFilterModifyDialog.h"
 #include "ui_AdvancedFilterModifyDialog.h"
 
-#include <QtGui/QMessageBox>
+//#include <QtGui/QMessageBox>
 
 using namespace GCM::geolib::filter;
 

@@ -1,7 +1,8 @@
 #ifndef NUMBERLINEEDIT_H
 #define NUMBERLINEEDIT_H
 
-#include <QtGui/QLineEdit>
+//#include <QtGui/QLineEdit>
+#include <QtWidgets>
 
 class NumberLineEdit : public QLineEdit
 {

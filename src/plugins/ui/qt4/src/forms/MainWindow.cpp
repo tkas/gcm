@@ -330,7 +330,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->cachesView->setContextMenuPolicy(Qt::CustomContextMenu);
 
 	// TODO: Support moving of columns
-	ui->cachesView->header()->setMovable(false);
+	//ui->cachesView->header()->setMovable(false);
 
 	connect(ui->cachesView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(showContextMenu(const QPoint &)));
 	connect(ui->cachesView->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(onRowChanged(const QModelIndex &, const QModelIndex &)));
@@ -530,7 +530,7 @@ void MainWindow::showEvent(QShowEvent *event) {
 	for (int i = 0; i < ui->cachesView->header()->count() - 1; i++) {
 		QString itemName;
 		itemName.sprintf("cachesview_width_%d", i);
-		int size = cfg->getInt(itemName.toAscii().data(), 0);
+		int size = cfg->getInt(itemName.toLatin1().data(), 0);
 		if (size > 0) {
 			ui->cachesView->header()->resizeSection(i, size);
 		}
@@ -665,7 +665,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 		QString itemName;
 		itemName.sprintf("cachesview_width_%d", i);
 
-		cfg->set(itemName.toAscii().data(), (long int)ui->cachesView->header()->sectionSize(i));
+		cfg->set(itemName.toLatin1().data(), (long int)ui->cachesView->header()->sectionSize(i));
 	}
 
 	if (this->windowState() & Qt::WindowMaximized) {

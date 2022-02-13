@@ -462,7 +462,7 @@ GCM::GC<Filter> FilterDialog::buildFilter() {
 		if (fCacheName->getMatchMode() == CacheName::MM_IGNORED) {
 			delete fCacheName;
 		} else {
-			fCacheName->setCacheName(this->ui->cacheName->text().toAscii().data());
+			fCacheName->setCacheName(this->ui->cacheName->text().toLatin1().data());
 			out->append(fCacheName);
 		}
 	}
@@ -470,7 +470,7 @@ GCM::GC<Filter> FilterDialog::buildFilter() {
 	// Placed by
 	if (this->ui->placedBy->text() != "") {
 		PlacedBy *fPlacedBy = new PlacedBy();
-		fPlacedBy->setPlacedBy(this->ui->placedBy->text().toAscii().data());
+		fPlacedBy->setPlacedBy(this->ui->placedBy->text().toLatin1().data());
 		out->append(fPlacedBy);
 	}
 

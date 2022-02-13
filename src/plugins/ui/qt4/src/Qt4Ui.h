@@ -1,7 +1,8 @@
 #ifndef QT4UI_H
 #define QT4UI_H
 
-#include <QtGui/QApplication>
+#include <QtGui/QGuiApplication>
+#include <QtWidgets>
 #include <ui.h>
 #include "forms/MainWindow.h"
 

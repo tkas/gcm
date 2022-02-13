@@ -222,7 +222,7 @@ void WaypointDialog::wptTypeChanged(int index) {
 				i = this->cache->getWaypoints()->begin();
 				while (i != this->cache->getWaypoints()->end()) {
 					GCM::GC<GeocacheWaypoint> wpt = *i;
-					if (strncmp(wpt->getId()->c_str(), txt.toAscii().data(), 2) == 0) {
+					if (strncmp(wpt->getId()->c_str(), txt.toLatin1().data(), 2) == 0) {
 						found = true;
 						break;
 					}

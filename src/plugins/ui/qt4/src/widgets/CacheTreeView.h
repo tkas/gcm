@@ -1,8 +1,8 @@
 #ifndef CACHETREEVIEW_H
 #define CACHETREEVIEW_H
 
-#include <QtGui/QTreeView>
-
+//#include <QtGui/QTreeView>
+#include <QtWidgets>
 
 class CacheTreeView : public QTreeView {
 public:

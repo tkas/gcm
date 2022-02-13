@@ -98,11 +98,11 @@ $(LIBGCM): $(COREOBJS)
 # Applications
 $(TARGET)/gcm-cli$(EXTENSION): CXXFLAGS+=-DGCM_CORE
 $(TARGET)/gcm-cli$(EXTENSION): src/gcm-cli.o src/core/main.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(BIN_LDFLAGS) $(CLI_LDFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CLI_LDFLAGS) $^ $(BIN_LDFLAGS) -o $@
 
 $(TARGET)/gcm$(EXTENSION): CXXFLAGS+=-DGCM_CORE
 $(TARGET)/gcm$(EXTENSION): src/gcm.o src/core/main.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(BIN_LDFLAGS) $(GUI_LDFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(GUI_LDFLAGS) $^ $(BIN_LDFLAGS) -o $@
 
 src/core/expat/xmltok.o: CXXFLAGS+=-Wno-missing-field-initializers
 

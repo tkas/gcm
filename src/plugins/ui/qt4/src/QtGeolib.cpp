@@ -73,7 +73,7 @@ const char *QtGeolib::cacheIconChar(Geocache::Type type) {
 }
 
 QString QtGeolib::cacheIconQString(Geocache::Type type) {
-	return QString::fromAscii(cacheIconChar(type));
+	return QString::fromLatin1(cacheIconChar(type));
 }
 
 GCM::String QtGeolib::cacheIconString(Geocache::Type type) {
@@ -112,7 +112,7 @@ const char *QtGeolib::waypointIconChar(GCM::geolib::GeocacheWaypoint::Type type)
 }
 
 QString QtGeolib::waypointIconQString(GCM::geolib::GeocacheWaypoint::Type type) {
-	return QString::fromAscii(waypointIconChar(type));
+	return QString::fromLatin1(waypointIconChar(type));
 }
 
 GCM::String QtGeolib::waypointIconString(GCM::geolib::GeocacheWaypoint::Type type) {

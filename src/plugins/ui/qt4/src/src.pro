@@ -5,7 +5,7 @@ TEMPLATE = lib
 TARGET_EXT = 
 CONFIG += plugin
 INCLUDEPATH += ../../../../../include
-QT += webkit
+QT += webkit webkitwidgets widgets
 FORMS += forms/MainWindow.ui \
     forms/StartupDialog.ui \
     forms/ProgressDialog.ui \

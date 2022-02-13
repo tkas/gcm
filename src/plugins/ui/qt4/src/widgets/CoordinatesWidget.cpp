@@ -57,19 +57,19 @@ void CoordinatesWidget::changeEvent(QEvent *e)
 Coords CoordinatesWidget::getWgsDMCoords() {
 	Coords out;
 
-	//GCM::util::Log::d("WaypointManager", "wgsDMDLat = '%s'", (const char *)this->ui->wgsDMDLat->text().toAscii());
+	//GCM::util::Log::d("WaypointManager", "wgsDMDLat = '%s'", (const char *)this->ui->wgsDMDLat->text().toLatin1());
 
 	// Get N/S
 	int ns = (this->ui->wgsDMNS->currentIndex() == 0)?1:-1;
-	int dlat = atoi(this->ui->wgsDMDLat->text().toAscii());
-	out.mlat = atof(this->ui->wgsDMMLat->text().toAscii());
+	int dlat = atoi(this->ui->wgsDMDLat->text().toLatin1());
+	out.mlat = atof(this->ui->wgsDMMLat->text().toLatin1());
 	out.slat = (out.mlat - (int)out.mlat) * 60;
 	out.dlat = ns * (dlat + out.mlat / 60);
 
 	// Get E/W
 	int ew = (this->ui->wgsDMEW->currentIndex() == 0)?1:-1;
-	int dlon = atoi(this->ui->wgsDMDLon->text().toAscii());
-	out.mlon = atof(this->ui->wgsDMMLon->text().toAscii());
+	int dlon = atoi(this->ui->wgsDMDLon->text().toLatin1());
+	out.mlon = atof(this->ui->wgsDMMLon->text().toLatin1());
 	out.slon = (out.mlon - (int)out.mlon) * 60;
 	out.dlon = ew * (dlon + out.mlon / 60);
 
@@ -80,10 +80,10 @@ Coords CoordinatesWidget::getWgsDDCoords() {
 	Coords out;
 
 	int ns = (this->ui->wgsDDNS->currentIndex() == 0)?1:-1;
-	out.dlat = ns * atof(this->ui->wgsDDLat->text().toAscii());
+	out.dlat = ns * atof(this->ui->wgsDDLat->text().toLatin1());
 
 	int ew = (this->ui->wgsDDEW->currentIndex() == 0)?1:-1;
-	out.dlon = ew * atof(this->ui->wgsDDLon->text().toAscii());
+	out.dlon = ew * atof(this->ui->wgsDDLon->text().toLatin1());
 
 	out.mlat = (out.dlat - (int)out.dlat) * 60;
 	out.mlon = (out.dlon - (int)out.dlon) * 60;
@@ -98,19 +98,19 @@ Coords CoordinatesWidget::getWgsDMSCoords() {
 
 	// Get N/S
 	int ns = (this->ui->wgsDMSNS->currentIndex() == 0)?1:-1;
-	int dlat = atoi(this->ui->wgsDMSDLat->text().toAscii());
-	int mlat = atoi(this->ui->wgsDMSMLat->text().toAscii());
+	int dlat = atoi(this->ui->wgsDMSDLat->text().toLatin1());
+	int mlat = atoi(this->ui->wgsDMSMLat->text().toLatin1());
 
-	out.slat = atof(this->ui->wgsDMSSLat->text().toAscii());
+	out.slat = atof(this->ui->wgsDMSSLat->text().toLatin1());
 	out.dlat = ns * (dlat + mlat / 60 + out.slat / 3600);
 	out.mlat = mlat + out.slat / 60;
 
 	// Get E/W
 	int ew = (this->ui->wgsDMSEW->currentIndex() == 0)?1:-1;
-	int dlon = atoi(this->ui->wgsDMSDLon->text().toAscii());
-	int mlon = atoi(this->ui->wgsDMSMLon->text().toAscii());
+	int dlon = atoi(this->ui->wgsDMSDLon->text().toLatin1());
+	int mlon = atoi(this->ui->wgsDMSMLon->text().toLatin1());
 
-	out.slon = atof(this->ui->wgsDMSSLon->text().toAscii());
+	out.slon = atof(this->ui->wgsDMSSLon->text().toLatin1());
 	out.dlon = ew * (dlon + mlon / 60 + out.slon / 3600);
 	out.mlon = mlon + out.slon * 60;
 

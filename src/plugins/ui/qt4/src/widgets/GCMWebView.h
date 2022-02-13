@@ -1,7 +1,8 @@
 #ifndef GCMWEBVIEW_H
 #define GCMWEBVIEW_H
 
-#include <QWebView>
+//#include <QWebView>
+#include <QtWebKitWidgets/qwebview.h>
 #include <QWidget>
 #include <util/Log.h>
 

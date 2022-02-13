@@ -1119,7 +1119,7 @@ void CacheEditDialog::onAccepted() {
 
         cache->setPlacedBy(this->ui->placedBy->text().toUtf8().data());
         cache->setOwner(this->ui->ownerName->text().toUtf8().data());
-        cache->setOwnerId(atoi(this->ui->ownerId->text().toAscii().data()));
+        cache->setOwnerId(atoi(this->ui->ownerId->text().toLatin1().data()));
 
         switch (this->ui->type->currentIndex()) {
         case 1: this->cache->setCacheType(Geocache::T_MULTI); break;

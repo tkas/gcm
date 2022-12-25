@@ -30,7 +30,8 @@ class GCM_API Log: public Object {
 			T_UNARCHIVE,
 			T_ANNOUNCEMENT,
 			T_PUBLISH,
-			T_RETRACT
+			T_RETRACT,
+			T_SUBMIT
 		} Type;
 
 	private:

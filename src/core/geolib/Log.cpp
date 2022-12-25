@@ -89,6 +89,7 @@ String GCM_API Log::typeToGpxString(Type type) {
 		case T_WEBCAM_PHOTO_TAKEN: return "Webcam Photo Taken";
 		case T_WILL_ATTEND: return "Will Attend";
 		case T_WRITE_NOTE: return "Write note";
+		case T_SUBMIT: return "Submit for Review";
 		default: return "Unknown log type.";
 	}
 }
@@ -134,6 +135,8 @@ Log::Type GCM_API Log::gpxStringToType(String gpxString) {
 		return T_WRITE_NOTE;
 	} else if (gpxString->equals("Retract Listing")) {
 		return T_RETRACT;
+	} else if (gpxString->equals("Submit for Review")) {
+		return T_SUBMIT;
 	} else {
 		GCM::util::Log::e("Log", "Unknown log type '%s'.", gpxString->c_str());
 		return T_WRITE_NOTE;

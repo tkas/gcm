@@ -1,6 +1,6 @@
 <?php
 
-define('MAX_LOG', 30);
+define('MAX_LOG', 20);
 
 $argc != 2 and die("Usage: $argv[0] gcm.db3\n\n");
 

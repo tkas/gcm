@@ -14,6 +14,7 @@ class GCM_API Log: public Object {
 	public:
 		typedef enum {
 			T_FOUND_IT,
+			T_UNKNOWN,
 			T_WEBCAM_PHOTO_TAKEN,
 			T_DNF,
 			T_WRITE_NOTE,

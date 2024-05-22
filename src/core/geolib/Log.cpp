@@ -90,6 +90,7 @@ String GCM_API Log::typeToGpxString(Type type) {
 		case T_WILL_ATTEND: return "Will Attend";
 		case T_WRITE_NOTE: return "Write note";
 		case T_SUBMIT: return "Submit for Review";
+		case T_UNKNOWN: return "Unknown";
 		default: return "Unknown log type.";
 	}
 }
@@ -97,6 +98,8 @@ String GCM_API Log::typeToGpxString(Type type) {
 Log::Type GCM_API Log::gpxStringToType(String gpxString) {
 	if (gpxString->equals("Found it")) {
 		return T_FOUND_IT;
+	} else if (gpxString->equals("Unknown")) {
+		return T_UNKNOWN;
 	} else if (gpxString->equals("Write note")) {
 		return T_WRITE_NOTE;
 	} else if (gpxString->equals("Didn't find it")) {

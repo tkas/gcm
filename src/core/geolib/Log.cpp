@@ -72,7 +72,7 @@ void GCM_API Log::setTextEncoded(bool encoded) {
 String GCM_API Log::typeToGpxString(Type type) {
 	switch (type) {
 		case T_ANNOUNCEMENT: return "Announcement";
-		case T_ARCHIVE: return "Archive";
+		case T_ARCHIVE: return "Archived";
 		case T_ATTENDED: return "Attended";
 		case T_DISABLE: return "Temporarily Disable Listing";
 		case T_DNF: return "Didn't find it";
@@ -124,7 +124,7 @@ Log::Type GCM_API Log::gpxStringToType(String gpxString) {
 		return T_NEEDS_ARCHIVED;
 	} else if (gpxString->equals("Will Attend")) {
 		return T_WILL_ATTEND;
-	} else if (gpxString->equals("Archive")) {
+	} else if (gpxString->equals("Archived")) {
 		return T_ARCHIVE;
 	} else if (gpxString->equals("Publish Listing")) {
 		return T_PUBLISH;

@@ -124,6 +124,8 @@ Log::Type GCM_API Log::gpxStringToType(String gpxString) {
 		return T_NEEDS_ARCHIVED;
 	} else if (gpxString->equals("Will Attend")) {
 		return T_WILL_ATTEND;
+	} else if (gpxString->equals("Archive")) {
+		return T_ARCHIVE;
 	} else if (gpxString->equals("Archived")) {
 		return T_ARCHIVE;
 	} else if (gpxString->equals("Publish Listing")) {
@@ -141,7 +143,7 @@ Log::Type GCM_API Log::gpxStringToType(String gpxString) {
 	} else if (gpxString->equals("Submit for Review")) {
 		return T_SUBMIT;
 	} else {
-		GCM::util::Log::e("Log", "Unknown log type '%s'.", gpxString->c_str());
+		GCM::util::Log::e("Log", "Unknown log type '%s'.\n\n", gpxString->c_str());
 		return T_WRITE_NOTE;
 	}
 }

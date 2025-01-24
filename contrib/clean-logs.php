@@ -1,6 +1,6 @@
 <?php
 
-define('MAX_LOG', 20);
+define('MAX_LOG', 15);
 
 $argc != 2 and die("Usage: $argv[0] gcm.db3\n\n");
 
@@ -16,12 +16,16 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
 
   $logs = $db->query('SELECT `id`,`ref_cache`,`date` FROM logs WHERE `ref_cache` = "'.$row['ref_cache'].'" ORDER BY `date` DESC');
   $count=0;
+  $delete_ids = '';
   while ($l = $logs->fetchArray(SQLITE3_ASSOC)) {
     $count++;
     if ($count > MAX_LOG){
       if($count % 10 == 0) echo '.';
-      $db->exec('DELETE FROM `logs` WHERE `id` = "'.$l['id'].'" AND `ref_cache` = "'.$l['ref_cache'].'";');
+      $delete_ids .= $l['id'].",";
     }
+  }
+  if ($delete_ids != ''){
+    $db->exec('DELETE FROM `logs` WHERE `id` IN ('.rtrim($delete_ids, ',').') AND `ref_cache` = "'.$row['ref_cache'].'";');
   }
   $logs->finalize();
   echo $count."\n";
